@@ -1,0 +1,118 @@
+{% extends 'RUser/Header.html' %}
+{% block userblock %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-circle me-2"></i>Your Profile Information
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-user me-2 text-primary"></i>Username
+                                </label>
+                                <div class="info-value">{{object.username}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-envelope me-2 text-primary"></i>Email Address
+                                </label>
+                                <div class="info-value">{{object.email}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-phone me-2 text-primary"></i>Mobile Number
+                                </label>
+                                <div class="info-value">{{object.phoneno}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-venus-mars me-2 text-primary"></i>Gender
+                                </label>
+                                <div class="info-value">{{object.gender}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-globe me-2 text-primary"></i>Country
+                                </label>
+                                <div class="info-value">{{object.country}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-map-marker-alt me-2 text-primary"></i>State
+                                </label>
+                                <div class="info-value">{{object.state}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-city me-2 text-primary"></i>City
+                                </label>
+                                <div class="info-value">{{object.city}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item">
+                                <label class="info-label">
+                                    <i class="fas fa-home me-2 text-primary"></i>Address
+                                </label>
+                                <div class="info-value">{{object.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="{% url 'Employee_Stress_Prediction_Type' %}" class="btn btn-lg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; padding: 12px 30px; font-weight: 600;">
+                            <i class="fas fa-brain me-2"></i>Predict Your Stress Level
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.info-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+.info-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.info-label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
+}
+.info-value {
+    font-size: 16px;
+    color: #34495e;
+    font-weight: 500;
+}
+</style>
+
+{% endblock %}

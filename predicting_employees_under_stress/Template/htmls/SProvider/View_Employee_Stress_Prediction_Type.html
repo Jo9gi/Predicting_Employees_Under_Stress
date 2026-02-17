@@ -1,0 +1,130 @@
+{% extends 'SProvider/Header.html' %}
+{% block researchblock %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+                    <h3 class="mb-0">
+                        <i class="fas fa-brain me-2"></i>Employee Stress Predictions
+                    </h3>
+                    <p class="mb-0 mt-2">Complete prediction history with employee details</p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%); color: white;">
+                                <tr>
+                                    <th class="px-3 py-3"><i class="fas fa-id-badge me-1"></i>Employee ID</th>
+                                    <th class="px-3 py-3"><i class="fas fa-building me-1"></i>Department</th>
+                                    <th class="px-3 py-3"><i class="fas fa-map-marker-alt me-1"></i>Region</th>
+                                    <th class="px-3 py-3"><i class="fas fa-graduation-cap me-1"></i>Education</th>
+                                    <th class="px-3 py-3"><i class="fas fa-venus-mars me-1"></i>Gender</th>
+                                    <th class="px-3 py-3"><i class="fas fa-birthday-cake me-1"></i>Age</th>
+                                    <th class="px-3 py-3"><i class="fas fa-star me-1"></i>Performance</th>
+                                    <th class="px-3 py-3"><i class="fas fa-calendar-alt me-1"></i>Years</th>
+                                    <th class="px-3 py-3"><i class="fas fa-clock me-1"></i>Hours</th>
+                                    <th class="px-3 py-3"><i class="fas fa-dollar-sign me-1"></i>Income</th>
+                                    <th class="px-3 py-3"><i class="fas fa-chart-bar me-1"></i>Prediction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for object in list_objects %}
+                                <tr class="prediction-row">
+                                    <td class="px-3 py-3">
+                                        <strong class="text-primary">{{ object.employee_id }}</strong>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <span class="badge bg-info">{{ object.department }}</span>
+                                    </td>
+                                    <td class="px-3 py-3">{{ object.region }}</td>
+                                    <td class="px-3 py-3">{{ object.education }}</td>
+                                    <td class="px-3 py-3">
+                                        <span class="badge" style="background: {% if object.gender == 'Male' %}#3498db{% else %}#e91e63{% endif %}; color: white;">
+                                            {{ object.gender }}
+                                        </span>
+                                    </td>
+                                    <td class="px-3 py-3">{{ object.age }}</td>
+                                    <td class="px-3 py-3">
+                                        <div class="rating-stars">
+                                            {% for i in "12345" %}
+                                                {% if forloop.counter <= object.Prformance_Rating|floatformat:0|add:0 %}
+                                                    <i class="fas fa-star text-warning"></i>
+                                                {% else %}
+                                                    <i class="far fa-star text-muted"></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                    <td class="px-3 py-3">{{ object.Years_at_company }}y</td>
+                                    <td class="px-3 py-3">{{ object.Working_Hours }}h</td>
+                                    <td class="px-3 py-3">
+                                        <span class="text-success fw-bold">₹{{ object.Monthly_Income }}</span>
+                                    </td>
+                                    <td class="px-3 py-3">
+                                        <span class="prediction-badge" style="{% if object.Prediction == 'Low Stress' %}background: #27ae60; color: white;{% else %}background: #e74c3c; color: white;{% endif %} padding: 6px 12px; border-radius: 15px; font-weight: 600; font-size: 12px;">
+                                            {% if object.Prediction == 'Low Stress' %}
+                                                <i class="fas fa-check-circle me-1"></i>{{ object.Prediction }}
+                                            {% else %}
+                                                <i class="fas fa-exclamation-triangle me-1"></i>{{ object.Prediction }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="11" class="text-center py-5">
+                                        <div class="text-muted">
+                                            <i class="fas fa-brain fa-3x mb-3"></i>
+                                            <h5>No Predictions Available</h5>
+                                            <p>No employee stress predictions have been made yet.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-center py-3">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Total Predictions: <strong>{{ list_objects|length }}</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.prediction-row {
+    transition: all 0.3s ease;
+}
+.prediction-row:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.table th {
+    border: none;
+    font-weight: 600;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.table td {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+    font-size: 14px;
+}
+.rating-stars {
+    font-size: 14px;
+}
+.badge {
+    font-size: 11px;
+}
+</style>
+
+{% endblock %}

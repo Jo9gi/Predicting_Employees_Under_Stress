@@ -1,0 +1,364 @@
+{% extends 'RUser/Header.html' %}
+{% block userblock %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h3 class="mb-0">
+                        <i class="fas fa-brain me-2"></i>Employee Stress Level Prediction
+                    </h3>
+                    <p class="mb-0 mt-2">Enter your details to predict your stress level using AI</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" role="form">
+                        {% csrf_token %}
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-id-badge me-1"></i>Employee ID</label>
+                                <input type="text" class="form-control" name="employee_id" placeholder="Enter Employee ID" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-building me-1"></i>Department</label>
+                                <select class="form-control" name="department" required>
+                                    <option value="">Select Department</option>
+                                    <option value="Sales & Marketing">Sales & Marketing</option>
+                                    <option value="Operations">Operations</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Analytics">Analytics</option>
+                                    <option value="R&D">R&D</option>
+                                    <option value="Procurement">Procurement</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="HR">HR</option>
+                                    <option value="Legal">Legal</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-map-marker-alt me-1"></i>Region</label>
+                                <select class="form-control" name="region" required>
+                                    <option value="">Select Region</option>
+                                    <option value="region_1">Region 1</option>
+                                    <option value="region_2">Region 2</option>
+                                    <option value="region_4">Region 4</option>
+                                    <option value="region_5">Region 5</option>
+                                    <option value="region_7">Region 7</option>
+                                    <option value="region_10">Region 10</option>
+                                    <option value="region_11">Region 11</option>
+                                    <option value="region_13">Region 13</option>
+                                    <option value="region_14">Region 14</option>
+                                    <option value="region_15">Region 15</option>
+                                    <option value="region_16">Region 16</option>
+                                    <option value="region_17">Region 17</option>
+                                    <option value="region_19">Region 19</option>
+                                    <option value="region_20">Region 20</option>
+                                    <option value="region_22">Region 22</option>
+                                    <option value="region_23">Region 23</option>
+                                    <option value="region_25">Region 25</option>
+                                    <option value="region_26">Region 26</option>
+                                    <option value="region_27">Region 27</option>
+                                    <option value="region_28">Region 28</option>
+                                    <option value="region_29">Region 29</option>
+                                    <option value="region_30">Region 30</option>
+                                    <option value="region_31">Region 31</option>
+                                    <option value="region_34">Region 34</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-graduation-cap me-1"></i>Education</label>
+                                <select class="form-control" name="education" required>
+                                    <option value="">Select Education Level</option>
+                                    <option value="Bachelor's">Bachelor's</option>
+                                    <option value="Master's & above">Master's & above</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-venus-mars me-1"></i>Gender</label>
+                                <select class="form-control" name="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="m">Male</option>
+                                    <option value="f">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-handshake me-1"></i>Recruitment Channel</label>
+                                <select class="form-control" name="recruitment_channel" required>
+                                    <option value="">Select Recruitment Channel</option>
+                                    <option value="sourcing">Sourcing</option>
+                                    <option value="other">Other</option>
+                                    <option value="referred">Referred</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-clock me-1"></i>Training Time (hours)</label>
+                                <select class="form-control" name="Training_Time" required>
+                                    <option value="">Select Training Time</option>
+                                    <option value="1">1 hour</option>
+                                    <option value="2">2 hours</option>
+                                    <option value="3">3 hours</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-birthday-cake me-1"></i>Age</label>
+                                <input type="number" class="form-control" name="age" placeholder="Enter Age" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-star me-1"></i>Performance Rating (1-6)</label>
+                                <select class="form-control" name="Prformance_Rating" required>
+                                    <option value="">Select Performance Rating</option>
+                                    <option value="1">1 - Poor</option>
+                                    <option value="2">2 - Below Average</option>
+                                    <option value="3">3 - Average</option>
+                                    <option value="4">4 - Good</option>
+                                    <option value="5">5 - Excellent</option>
+                                    <option value="6">6 - Outstanding</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-calendar-alt me-1"></i>Years at Company</label>
+                                <input type="number" class="form-control" name="Years_at_company" placeholder="Enter Years at Company" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-business-time me-1"></i>Working Hours per Week</label>
+                                <input type="number" class="form-control" name="Working_Hours" placeholder="Enter Working Hours" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-clock me-1"></i>Flexible Timings</label>
+                                <select class="form-control" name="Flexible_Timings" required>
+                                    <option value="">Select Flexible Timings</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-weight-hanging me-1"></i>Workload Level</label>
+                                <select class="form-control" name="Workload_level" required>
+                                    <option value="">Select Workload Level</option>
+                                    <option value="High">High</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-dollar-sign me-1"></i>Monthly Income</label>
+                                <input type="number" class="form-control" name="Monthly_Income" placeholder="Enter Monthly Income" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-smile me-1"></i>Work Satisfaction</label>
+                                <select class="form-control" name="Work_Satisfaction" required>
+                                    <option value="">Select Work Satisfaction</option>
+                                    <option value="Yes">Satisfied</option>
+                                    <option value="No">Not Satisfied</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-chart-line me-1"></i>Salary Hike Percentage</label>
+                                <input type="number" class="form-control" name="Percent_salary_hike" placeholder="Enter Salary Hike %" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-briefcase me-1"></i>Companies Worked</label>
+                                <input type="number" class="form-control" name="companies_worked" placeholder="Number of Companies Worked" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fas fa-heart me-1"></i>Marital Status</label>
+                                <select class="form-control" name="Marital_Status" required>
+                                    <option value="">Select Marital Status</option>
+                                    <option value="Yes">Married</option>
+                                    <option value="No">Single</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-lg px-5" name="submit" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; padding: 15px 40px; font-weight: 600;">
+                                <i class="fas fa-brain me-2"></i>Predict Stress Level
+                            </button>
+                        </div>
+                    </form>
+                    
+                    {% if objs %}
+                    <div class="mt-5">
+                        <!-- Prediction Result -->
+                        <div class="alert border-0 shadow-sm mb-4" style="{% if objs == 'Low Stress' %}background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);{% else %}background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);{% endif %} color: white;">
+                            <div class="text-center">
+                                <h4 class="mb-3">
+                                    <i class="fas fa-chart-bar me-2"></i>Prediction Result
+                                </h4>
+                                <div class="result-badge" style="background: rgba(255,255,255,0.2); padding: 15px 30px; border-radius: 15px; display: inline-block;">
+                                    <h3 class="mb-0" style="font-weight: 700;">{{objs}}</h3>
+                                </div>
+                                {% if objs == 'Low Stress' %}
+                                <p class="mt-3 mb-0"><i class="fas fa-check-circle me-1"></i>Great! Your stress level appears to be manageable.</p>
+                                {% else %}
+                                <p class="mt-3 mb-0"><i class="fas fa-exclamation-triangle me-1"></i>Consider stress management techniques and consult with HR.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <!-- Submitted Details Summary -->
+                        <div class="card border-0 shadow-lg">
+                            <div class="card-header bg-gradient text-white text-center py-3" style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-clipboard-list me-2"></i>Your Submitted Details
+                                </h5>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-id-badge me-2 text-primary"></i>Employee ID</label>
+                                            <span>{{ request.POST.employee_id }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-building me-2 text-primary"></i>Department</label>
+                                            <span>{{ request.POST.department }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-map-marker-alt me-2 text-primary"></i>Region</label>
+                                            <span>{{ request.POST.region }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-graduation-cap me-2 text-primary"></i>Education</label>
+                                            <span>{{ request.POST.education }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-venus-mars me-2 text-primary"></i>Gender</label>
+                                            <span>{{ request.POST.gender }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-handshake me-2 text-primary"></i>Recruitment Channel</label>
+                                            <span>{{ request.POST.recruitment_channel }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-clock me-2 text-primary"></i>Training Time</label>
+                                            <span>{{ request.POST.Training_Time }} hours</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-birthday-cake me-2 text-primary"></i>Age</label>
+                                            <span>{{ request.POST.age }} years</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-star me-2 text-primary"></i>Performance Rating</label>
+                                            <span>{{ request.POST.Prformance_Rating }}/5</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-calendar-alt me-2 text-primary"></i>Years at Company</label>
+                                            <span>{{ request.POST.Years_at_company }} years</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-business-time me-2 text-primary"></i>Working Hours</label>
+                                            <span>{{ request.POST.Working_Hours }} hours/week</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-clock me-2 text-primary"></i>Flexible Timings</label>
+                                            <span>{{ request.POST.Flexible_Timings }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-weight-hanging me-2 text-primary"></i>Workload Level</label>
+                                            <span>{{ request.POST.Workload_level }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-dollar-sign me-2 text-primary"></i>Monthly Income</label>
+                                            <span>₹{{ request.POST.Monthly_Income }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-smile me-2 text-primary"></i>Work Satisfaction</label>
+                                            <span>{{ request.POST.Work_Satisfaction }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-chart-line me-2 text-primary"></i>Salary Hike</label>
+                                            <span>{{ request.POST.Percent_salary_hike }}%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-briefcase me-2 text-primary"></i>Companies Worked</label>
+                                            <span>{{ request.POST.companies_worked }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-item">
+                                            <label><i class="fas fa-heart me-2 text-primary"></i>Marital Status</label>
+                                            <span>{{ request.POST.Marital_Status }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+.form-label {
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+.detail-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid #3498db;
+}
+.detail-item label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+.detail-item span {
+    font-size: 16px;
+    color: #34495e;
+    font-weight: 500;
+}
+</style>
+
+{% endblock %}

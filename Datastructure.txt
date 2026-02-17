@@ -1,0 +1,43 @@
+Predicting Employees under Stress for Pre emptive Remediation using Machine learning Algorithm
+
+
+Data Visualization, Machine Learning Algorithms,people analytics, Employee stress.
+
+
+IEEE Conference on Machine Learning,Issue Date:05-Jul-2022
+
+
+
+
+
+
+Predicting_Employees_Under_Stress
+
+
+predicting_employees_under_stress
+
+
+
+Predicting_Employee_Stress
+
+
+employee_id
+department
+region
+education
+gender
+recruitment_channel
+Training_Time
+age
+Prformance_Rating
+Years_at_company
+Working_Hours
+Flexible_Timings
+Workload_level
+Monthly_Income
+Work_Satisfaction
+Percent_salary_hike
+companies_worked
+Marital_Status
+Prediction
+

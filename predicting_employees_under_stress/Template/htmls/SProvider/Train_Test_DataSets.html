@@ -1,0 +1,119 @@
+{% extends 'SProvider/Header.html' %}
+{% block researchblock %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+                    <h3 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>Model Training & Testing Results
+                    </h3>
+                    <p class="mb-0 mt-2">Machine Learning Algorithm Accuracy Comparison</p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%); color: white;">
+                                <tr>
+                                    <th class="px-4 py-3 text-center">
+                                        <i class="fas fa-robot me-2"></i>Algorithm
+                                    </th>
+                                    <th class="px-4 py-3 text-center">
+                                        <i class="fas fa-percentage me-2"></i>Accuracy (%)
+                                    </th>
+                                    <th class="px-4 py-3 text-center">
+                                        <i class="fas fa-chart-bar me-2"></i>Performance
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for object in objs %}
+                                <tr class="accuracy-row">
+                                    <td class="px-4 py-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="algorithm-icon me-3">
+                                                <i class="fas fa-brain fa-2x text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <strong class="text-dark">{{ object.names }}</strong>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-center">
+                                        <span class="accuracy-badge" style="background: {% if object.ratio >= 90 %}#27ae60{% elif object.ratio >= 80 %}#f39c12{% else %}#e74c3c{% endif %}; color: white; padding: 8px 15px; border-radius: 20px; font-weight: 600;">
+                                            {{ object.ratio|floatformat:2 }}%
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar" role="progressbar" 
+                                                 style="width: {{ object.ratio }}%; background: {% if object.ratio >= 90 %}#27ae60{% elif object.ratio >= 80 %}#f39c12{% else %}#e74c3c{% endif %};" 
+                                                 aria-valuenow="{{ object.ratio }}" aria-valuemin="0" aria-valuemax="100">
+                                                {{ object.ratio|floatformat:1 }}%
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center py-5">
+                                        <div class="text-muted">
+                                            <i class="fas fa-chart-line fa-3x mb-3"></i>
+                                            <h5>No Training Data Available</h5>
+                                            <p>Train the models first to see accuracy results.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-center py-3">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Higher accuracy indicates better model performance
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.accuracy-row {
+    transition: all 0.3s ease;
+}
+.accuracy-row:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.table th {
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+.table td {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+.algorithm-icon {
+    opacity: 0.8;
+}
+.progress {
+    border-radius: 10px;
+    background-color: #e9ecef;
+}
+.progress-bar {
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+</style>
+
+{% endblock %}

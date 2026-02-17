@@ -1,0 +1,134 @@
+{% extends 'SProvider/Header.html' %}
+{% block researchblock %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+                    <h3 class="mb-0">
+                        <i class="fas fa-users me-2"></i>Registered Employees
+                    </h3>
+                    <p class="mb-0 mt-2">View all registered users in the system</p>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%); color: white;">
+                                <tr>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-user me-2"></i>Username
+                                    </th>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-envelope me-2"></i>Email
+                                    </th>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-venus-mars me-2"></i>Gender
+                                    </th>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-home me-2"></i>Address
+                                    </th>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-phone me-2"></i>Mobile
+                                    </th>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-globe me-2"></i>Country
+                                    </th>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-map-marker-alt me-2"></i>State
+                                    </th>
+                                    <th class="px-4 py-3">
+                                        <i class="fas fa-city me-2"></i>City
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for o in objects %}
+                                <tr class="user-row">
+                                    <td class="px-4 py-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-avatar me-3">
+                                                <i class="fas fa-user-circle fa-2x text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <strong class="text-dark">{{o.username}}</strong>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="text-muted">{{o.email}}</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="badge rounded-pill" style="background: {% if o.gender == 'Male' %}#3498db{% else %}#e91e63{% endif %}; color: white;">
+                                            {{o.gender}}
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="text-muted">{{o.address|truncatechars:30}}</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="text-muted">{{o.phoneno}}</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="text-muted">{{o.country}}</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="text-muted">{{o.state}}</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <span class="text-muted">{{o.city}}</span>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="8" class="text-center py-5">
+                                        <div class="text-muted">
+                                            <i class="fas fa-users fa-3x mb-3"></i>
+                                            <h5>No users found</h5>
+                                            <p>No employees have registered yet.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-center py-3">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Total Registered Users: <strong>{{ objects|length }}</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.user-row {
+    transition: all 0.3s ease;
+}
+.user-row:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.table th {
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+.table td {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+.user-avatar {
+    opacity: 0.8;
+}
+</style>
+
+{% endblock %}

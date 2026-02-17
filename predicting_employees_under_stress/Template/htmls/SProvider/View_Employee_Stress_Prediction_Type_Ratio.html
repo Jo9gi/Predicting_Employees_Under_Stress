@@ -1,0 +1,134 @@
+{% extends 'SProvider/Header.html' %}
+{% block researchblock %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-gradient text-white text-center py-4" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+                    <h3 class="mb-0">
+                        <i class="fas fa-chart-pie me-2"></i>Stress Prediction Ratio Analysis
+                    </h3>
+                    <p class="mb-0 mt-2">Distribution of stress levels among employees</p>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        {% for object in objs %}
+                        <div class="col-md-6">
+                            <div class="ratio-card" style="{% if object.names == 'Low Stress' %}background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);{% else %}background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);{% endif %} color: white; border-radius: 15px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                                <div class="ratio-icon mb-3">
+                                    {% if object.names == 'Low Stress' %}
+                                        <i class="fas fa-smile fa-3x"></i>
+                                    {% else %}
+                                        <i class="fas fa-frown fa-3x"></i>
+                                    {% endif %}
+                                </div>
+                                <h4 class="mb-2">{{ object.names }}</h4>
+                                <div class="ratio-percentage" style="font-size: 2.5rem; font-weight: 700; margin: 20px 0;">
+                                    {{ object.ratio|floatformat:1 }}%
+                                </div>
+                                <div class="progress mb-3" style="height: 10px; background: rgba(255,255,255,0.3);">
+                                    <div class="progress-bar" role="progressbar" 
+                                         style="width: {{ object.ratio }}%; background: rgba(255,255,255,0.8);" 
+                                         aria-valuenow="{{ object.ratio }}" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <p class="mb-0" style="font-size: 14px; opacity: 0.9;">
+                                    {% if object.names == 'Low Stress' %}
+                                        Employees with manageable stress levels
+                                    {% else %}
+                                        Employees requiring attention
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <div class="text-center py-5">
+                                <div class="text-muted">
+                                    <i class="fas fa-chart-pie fa-3x mb-3"></i>
+                                    <h5>No Ratio Data Available</h5>
+                                    <p>No stress prediction ratios have been calculated yet.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    {% if objs %}
+                    <div class="mt-5">
+                        <div class="card border-0" style="background: #f8f9fa;">
+                            <div class="card-body text-center py-4">
+                                <h5 class="mb-3">
+                                    <i class="fas fa-info-circle me-2 text-primary"></i>Summary
+                                </h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="summary-item">
+                                            <i class="fas fa-users fa-2x text-primary mb-2"></i>
+                                            <h6>Total Analyzed</h6>
+                                            <p class="text-muted mb-0">{{ objs|length }} Categories</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="summary-item">
+                                            <i class="fas fa-chart-line fa-2x text-success mb-2"></i>
+                                            <h6>Healthy Ratio</h6>
+                                            <p class="text-muted mb-0">
+                                                {% for obj in objs %}
+                                                    {% if obj.names == 'Low Stress' %}
+                                                        {{ obj.ratio|floatformat:1 }}%
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="summary-item">
+                                            <i class="fas fa-exclamation-triangle fa-2x text-warning mb-2"></i>
+                                            <h6>Attention Needed</h6>
+                                            <p class="text-muted mb-0">
+                                                {% for obj in objs %}
+                                                    {% if obj.names == 'More Stress' %}
+                                                        {{ obj.ratio|floatformat:1 }}%
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.ratio-card {
+    transition: all 0.3s ease;
+}
+.ratio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;
+}
+.progress {
+    border-radius: 10px;
+}
+.progress-bar {
+    border-radius: 10px;
+}
+.summary-item {
+    padding: 20px;
+}
+.summary-item h6 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+</style>
+
+{% endblock %}

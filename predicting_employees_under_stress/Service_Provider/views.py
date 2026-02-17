@@ -87,8 +87,8 @@ def View_Employee_Stress_Prediction_Type(request):
     return render(request, 'SProvider/View_Employee_Stress_Prediction_Type.html', {'list_objects': obj})
 
 def likeschart(request,like_chart):
-    charts =detection_accuracy.objects.values('names').annotate(dcount=Avg('ratio'))
-    return render(request,"SProvider/likeschart.html", {'form':charts, 'like_chart':like_chart})
+    charts = detection_ratio.objects.values('names').annotate(dcount=Avg('ratio'))
+    return render(request,"SProvider/likeschart.html", {'form':charts, 'chart_type':like_chart})
 
 
 def Download_Trained_DataSets(request):

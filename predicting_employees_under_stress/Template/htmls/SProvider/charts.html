@@ -33,17 +33,38 @@
            text-align:center;
            border-style:none;
            height:100px;
-           width:1330px;
-           float:left;
+           width:100%;
+     }
+     .chart-wrapper{
+           display: flex;
+           gap: 20px;
+           padding: 20px;
+           margin-top: 20px;
      }
      #chartContainer{
-            width: 1180px;
-            margin-left: 250px;
-            margin-top: -354px;
-            position: fixed;
+            width: 80%;
+            height: 500px;
+            margin: 0 auto;
      }
      .sidemenu{
-     margin-top: 118px;
+           width: 200px;
+           padding: 20px;
+           background: #f5f5f5;
+           border-radius: 8px;
+     }
+     .sidemenu a{
+           display: block;
+           padding: 10px 15px;
+           margin: 10px 0;
+           background: #584b4f;
+           color: white;
+           text-decoration: none;
+           border-radius: 5px;
+           text-align: center;
+           transition: 0.3s;
+     }
+     .sidemenu a:hover{
+           background: #000;
      }
 </style>
 
@@ -85,16 +106,14 @@ chart.render();
 
 
 
-<div class="sidemenu">
-    <h3 style="color:black;margin-left:60px;margin-top:80px"><a href="{% url 'charts' 'pie' %}" >PIE CHAERT<br>
-        <br>
-        <br>
-        <br>
-      <br>
-     </a><a href="{% url 'charts' 'line' %}">LINE CHART</a></h3>
-    <h3 style="color:white;margin-left:60px;margin-top:100px;"><a href="{% url 'charts' 'spline' %}"></a></h3>
+<div class="chart-wrapper">
+    <div class="sidemenu">
+        <h3 style="color:#584b4f; margin-bottom:20px; text-align:center;">Chart Types</h3>
+        <a href="{% url 'charts' 'pie' %}">PIE CHART</a>
+        <a href="{% url 'charts' 'line' %}">LINE CHART</a>
+    </div>
+    <div id="chartContainer" class="graph"></div>
 </div>
-<div id="chartContainer" class="graph"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </div>
 
